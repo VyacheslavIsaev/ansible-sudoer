@@ -1,0 +1,12 @@
+---
+# tasks file for sudoer
+- name: Adding existing user '{{ user }}' to group sudo
+  user:
+    name: '{{ user }}'
+    groups: sudo
+    append: yes
+
+- name: Configure nopasswd for user
+  template:
+    src: sudoer.j2
+    dest: "/etc/sudoers.d/{{user}}"
